@@ -2,6 +2,7 @@ import pygame as p
 
 
 import chess_engine
+from chess_engine import GameState
 
 HEIGHT = WIDTH = 400
 DIMENTION = 8
@@ -23,10 +24,31 @@ def main():
     game_state = chess_engine.GameState()
     load_images()
     running = True
+    squareSelected = () # keep track of the last click of the user
+    playerClicks = [] # keep track of player clicks
+
     while running:
         for e in p.event.get():
             if e.type == p.QUIT:
                 running = False
+            elif e.type == p.MOUSEBUTTONDOWN:
+                location = p.mouse.get_pos()
+                row = location[0]//SQUARE_SIZE
+                col = location[1]//SQUARE_SIZE
+                if squareSelected == (row, col):
+                    squareSelected = () # deselect
+                    playerClicks = [] # clear player clicks
+                else:
+                    squareSelected = (row, col)
+                    playerClicks.append(squareSelected)
+                if len(playerClicks) == 2:
+                    move = chess_engine.Move(playerClicks[0], playerClicks[1], game_state.board)
+                    print(move.getChessNotation())
+                    game_state.makeMove(move)
+
+                    squareSelected = ()
+                    playerClicks =[]
+                    draw_game_state(screen, game_state)
         draw_game_state(screen, game_state)
         clock.tick(MAX_FPS)
         p.display.flip()
