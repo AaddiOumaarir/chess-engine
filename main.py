@@ -37,13 +37,18 @@ def draw_game_state(screen, game_state):
     draw_pieces(screen, game_state.board)
 
 def draw_board(screen):
-    colors = [p.Color('gold'), p.Color('gray')]
+    colors = [(200, 111, 111), p.Color('gray')]
     for r in range(DIMENTION):
         for c in range(DIMENTION):
             color = colors[((r+c)%2)]
             p.draw.rect(screen, color, p.Rect(c*SQUARE_SIZE, r*SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE))
 def draw_pieces(screen, board):
-    pass
+    for r in range(DIMENTION):
+        for c in range(DIMENTION):
+            piece = board[r][c]
+            if piece !='--':
+                screen.blit(Images[piece], p.Rect(c*SQUARE_SIZE, r*SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE))
+
 
 
 
