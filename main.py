@@ -13,7 +13,7 @@ Images = {}
 def load_images():
     pieces = ['wp', 'wR', 'wN', 'wB', 'wK', 'wQ', 'bp', 'bR', 'bN', 'bB', 'bK', 'bQ']
     for piece in pieces:
-        Images[piece] = p.transform.scale(p.image.load('chess_pieces/'+piece+'.png'), (SQUARE_SIZE,SQUARE_SIZE))
+        Images[piece] = p.transform.scale(p.image.load('chess_pieces/'+piece+'.png'), (SQUARE_SIZE-1,SQUARE_SIZE-1))
 
 def main():
     p.init()
@@ -48,7 +48,7 @@ def main():
 
                     squareSelected = ()
                     playerClicks =[]
-                    draw_game_state(screen, game_state)
+
         draw_game_state(screen, game_state)
         clock.tick(MAX_FPS)
         p.display.flip()
