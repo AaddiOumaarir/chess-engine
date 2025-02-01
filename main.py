@@ -1,3 +1,5 @@
+
+# Code by Addi Oumaarir, thanks to Eddie sharik 
 import pygame as p
 
 
