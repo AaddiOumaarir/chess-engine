@@ -1,7 +1,7 @@
 
 # Code by Addi Oumaarir, thanks to Eddie sharik 
 import pygame as p
-
+import datetime
 
 import chess_engine
 from chess_engine import GameState
